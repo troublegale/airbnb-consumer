@@ -1,11 +1,11 @@
 package itmo.tg.airbnb_consumer.dto;
 
 import itmo.tg.airbnb_consumer.dto.enums.TicketStatus;
+import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
-
 @Data
+@Builder
 public class GuestComplaintResponseDTO {
 
     private Long id;
@@ -18,7 +18,7 @@ public class GuestComplaintResponseDTO {
 
     private String proofLink;
 
-    private LocalDate date;
+    private String date;
 
     private TicketStatus status;
 

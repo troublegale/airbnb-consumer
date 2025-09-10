@@ -4,6 +4,8 @@ import itmo.tg.airbnb_consumer.dto.GuestComplaintResponseDTO;
 import itmo.tg.airbnb_consumer.dto.HostDamageComplaintResponseDTO;
 import itmo.tg.airbnb_consumer.dto.HostJustificationResponseDTO;
 import itmo.tg.airbnb_consumer.dto.enums.TicketStatus;
+import itmo.tg.airbnb_consumer.service.senders.EmailService;
+import itmo.tg.airbnb_consumer.service.senders.jira.JiraService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;

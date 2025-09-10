@@ -29,6 +29,12 @@ spring:
             enable: true
             required: true
 
+jira:
+  url: ${JIRA_URL}
+  username: ${JIRA_USERNAME}
+  api-token: ${JIRA_API_TOKEN}
+  project-key: ${JIRA_PROJECT_KEY}
+
 logging:
   level:
     root: info
