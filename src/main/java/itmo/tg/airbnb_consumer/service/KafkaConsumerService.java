@@ -1,5 +1,6 @@
 package itmo.tg.airbnb_consumer.service;
 
+import itmo.tg.airbnb_consumer.dto.FineDTO;
 import itmo.tg.airbnb_consumer.dto.GuestComplaintResponseDTO;
 import itmo.tg.airbnb_consumer.dto.HostDamageComplaintResponseDTO;
 import itmo.tg.airbnb_consumer.dto.HostJustificationResponseDTO;
@@ -42,6 +43,11 @@ public class KafkaConsumerService {
         } else {
             emailService.sendEmail(dto);
         }
+    }
+
+    @KafkaListener(topics = "fines", groupId = "airbnb-group")
+    public void listenFines(FineDTO dto) {
+        emailService.sendEmail(dto);
     }
 
 }

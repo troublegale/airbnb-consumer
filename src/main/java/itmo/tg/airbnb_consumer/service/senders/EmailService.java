@@ -1,8 +1,10 @@
 package itmo.tg.airbnb_consumer.service.senders;
 
+import itmo.tg.airbnb_consumer.dto.FineDTO;
 import itmo.tg.airbnb_consumer.dto.GuestComplaintResponseDTO;
 import itmo.tg.airbnb_consumer.dto.HostDamageComplaintResponseDTO;
 import itmo.tg.airbnb_consumer.dto.HostJustificationResponseDTO;
+import itmo.tg.airbnb_consumer.dto.enums.FineStatus;
 import itmo.tg.airbnb_consumer.dto.enums.TicketStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
@@ -55,6 +57,21 @@ public class EmailService {
                         ? "It was approved.\nPenalties cause by Guest Complaint #" + dto.getGuestComplaintId() + " were retracted."
                         : "It was rejected."
         );
+        doSendEmail(address, title, text);
+    }
+
+    @Async
+    public void sendEmail(FineDTO dto) {
+        String address = dto.getEmail();
+        String title;
+        String text;
+        if (dto.getStatus() == FineStatus.ACTIVE) {
+            title = "You received a fine";
+            text = "You received a fine of " + dto.getAmount() + ". Pay or else...";
+        } else {
+            title = "Your fine was retracted";
+            text = "Your Justification was approved and your Fine of " + dto.getAmount() + " was retracted.";
+        }
         doSendEmail(address, title, text);
     }
 
